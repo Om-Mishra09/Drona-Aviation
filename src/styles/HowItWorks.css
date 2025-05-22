@@ -536,4 +536,79 @@
   body.dark-mode .step-number {
     color: white; /* Change this to white in dark mode */
   }
+  /* Extra mobile responsiveness for screens under 480px */
+@media (max-width: 480px) {
+    /* Introduction section tweaks */
+    .introduction {
+      padding-top: 100px;
+    }
+  
+    .introduction .content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+  
+    .introduction .text-content p {
+      font-size: 1rem;
+    }
+  
+    .introduction .image-placeholder {
+      height: 300px;
+      border-radius: 16px;
+    }
+  
+    .drone-video {
+      border-radius: 12px;
+    }
+  
+    /* How It Works section tweaks */
+    .steps-navigation {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 0.6rem;
+    }
+  
+    .step-button {
+      width: 140px;
+      padding: 0.8rem;
+      flex-direction: column;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  
+    .step-content {
+      min-height: 300px;
+    }
+  
+    .step-details {
+      padding: 1.2rem;
+    }
+  
+    .step-title {
+      font-size: 1.3rem;
+    }
+  
+    .step-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  
+    .visualization-placeholder {
+      height: 160px;
+      border-radius: 12px;
+    }
+  
+    .animation-element {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
   

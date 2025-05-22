@@ -261,22 +261,94 @@
     }
   } 
 
-/* Introduction.css */
 
-/* Style for the video */
 .drone-video {
-    width: 100%;   /* Make the video take full width of its container */
-    height: 100%;  /* Make the video take full height of its container */
-    object-fit: cover; /* Ensure the video covers the entire container, maintaining its aspect ratio */
-    border-radius: 8px; /* Optional: You can add rounded corners if you prefer */
+    width: 100%;  
+    height: 100%;  
+    object-fit: cover; 
+    border-radius: 8px; 
   }
   
-  /* Ensure the image-placeholder div has a specific height for the video to fill */
+
   .image-placeholder {
     width: 100%;
-    height: 400px;  /* You can adjust this value to match the height you need for the div */
+    height: 400px;  
     position: relative;
-    overflow: hidden; /* Hide anything that overflows from the container */
+    overflow: hidden; 
+  }
+  
+@media (max-width: 480px) {
+
+    .introduction {
+      padding-top: 100px;
+    }
+  
+    .introduction .content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+  
+    .introduction .text-content p {
+      font-size: 1rem;
+    }
+  
+    .introduction .image-placeholder {
+      height: 300px;
+      border-radius: 16px;
+    }
+  
+    .drone-video {
+      border-radius: 12px;
+    }
+  
+    /* How It Works section tweaks */
+    .steps-navigation {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 0.6rem;
+    }
+  
+    .step-button {
+      width: 140px;
+      padding: 0.8rem;
+      flex-direction: column;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  
+    .step-content {
+      min-height: 300px;
+    }
+  
+    .step-details {
+      padding: 1.2rem;
+    }
+  
+    .step-title {
+      font-size: 1.3rem;
+    }
+  
+    .step-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  
+    .visualization-placeholder {
+      height: 160px;
+      border-radius: 12px;
+    }
+  
+    .animation-element {
+      width: 60px;
+      height: 60px;
+    }
   }
   
 
