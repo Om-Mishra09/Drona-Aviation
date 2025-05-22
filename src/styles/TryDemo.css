@@ -1,0 +1,487 @@
+.try-demo {
+    background-color: var(--background-alt);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .try-demo::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 194, 168, 0.05), transparent 70%);
+    bottom: -250px;
+    left: -250px;
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .demo-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .block-selector,
+  .output-console {
+    background-color: var(--background-color);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    box-shadow: 0 15px 30px var(--shadow-color);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .block-selector:hover,
+  .output-console:hover {
+    transform: translateY(-5px);
+  }
+  
+  .block-selector h3,
+  .output-console h3 {
+    margin: 0;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.3rem;
+    background-color: var(--background-alt);
+    position: relative;
+  }
+  
+  .block-selector h3::after,
+  .output-console h3::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  .selected-block {
+    margin: 1.5rem;
+    background-color: var(--background-alt);
+    border-radius: 16px;
+    padding: 1.8rem;
+    border-left: 5px solid var(--block-color, var(--primary-color));
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .selected-block::before {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(var(--block-color-rgb, 106, 90, 205), 0.05), transparent 70%);
+    top: -75px;
+    right: -75px;
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .selected-block h4 {
+    color: var(--block-color, var(--primary-color));
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .no-block-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    margin: 1.5rem;
+    background-color: var(--background-alt);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .no-block-selected::before,
+  .no-block-selected::after {
+    content: "";
+    position: absolute;
+    background: linear-gradient(135deg, rgba(106, 90, 205, 0.05), rgba(0, 194, 168, 0.05));
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .no-block-selected::before {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    left: -100px;
+    animation: floatBubble 15s ease-in-out infinite alternate;
+  }
+  
+  .no-block-selected::after {
+    width: 150px;
+    height: 150px;
+    bottom: -75px;
+    right: -75px;
+    animation: floatBubble 12s ease-in-out infinite alternate-reverse;
+  }
+  
+  @keyframes floatBubble {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(20px, 20px);
+    }
+    100% {
+      transform: translate(0, 40px);
+    }
+  }
+  
+  .parameters {
+    margin: 1.8rem 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .parameter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .parameter label {
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .parameter label::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--block-color, var(--primary-color));
+    border-radius: 50%;
+  }
+  
+  .parameter input,
+  .parameter select {
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .parameter input:focus,
+  .parameter select:focus {
+    outline: none;
+    border-color: var(--block-color, var(--primary-color));
+    box-shadow: 0 0 0 3px rgba(var(--block-color-rgb, 106, 90, 205), 0.2);
+  }
+  
+  .parameter input:hover,
+  .parameter select:hover {
+    border-color: var(--primary-light);
+  }
+  
+  .execute-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--block-color), var(--block-color));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .execute-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--block-color), rgba(255, 255, 255, 0.2), var(--block-color));
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.6s ease;
+    z-index: -1;
+  }
+  
+  .execute-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(var(--block-color-rgb, 106, 90, 205), 0.3);
+  }
+  
+  .execute-button:hover:not(:disabled)::before {
+    background-position: 0 0;
+  }
+  
+  .execute-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .console {
+    margin: 1.5rem;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 320px;
+    overflow-y: auto;
+    font-family: var(--font-code);
+    position: relative;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .console::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(106, 90, 205, 0.05), rgba(0, 194, 168, 0.05));
+    opacity: 0.1;
+    pointer-events: none;
+  }
+  
+  .console pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+  
+  /* Drone visualization */
+  .drone-visualization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .drone-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+  }
+  
+  .drone-model {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    animation: droneHoverComplex 6s ease-in-out infinite;
+  }
+  
+  .drone-body {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .drone-body::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-light);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+  }
+  
+  .propeller {
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-light));
+    border-radius: 6px;
+    animation: propellerSpinFast 0.15s linear infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .propeller::before,
+  .propeller::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 6px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-light));
+    border-radius: 6px;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .propeller::before {
+    transform: rotate(45deg);
+  }
+  
+  .propeller::after {
+    transform: rotate(-45deg);
+  }
+  
+  .propeller-1 {
+    top: 15px;
+    left: 15px;
+  }
+  
+  .propeller-2 {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .propeller-3 {
+    bottom: 15px;
+    left: 15px;
+  }
+  
+  .propeller-4 {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .shadow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background-color: var(--shadow-color);
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: shadowPulseComplex 6s ease-in-out infinite;
+  }
+  
+  @keyframes droneHoverComplex {
+    0%,
+    100% {
+      transform: translate(-50%, -50%);
+    }
+    10% {
+      transform: translate(-52%, -55%) rotate(-1deg);
+    }
+    30% {
+      transform: translate(-48%, -65%) rotate(1deg);
+    }
+    50% {
+      transform: translate(-50%, -75%) rotate(0deg);
+    }
+    70% {
+      transform: translate(-53%, -65%) rotate(-1.5deg);
+    }
+    90% {
+      transform: translate(-47%, -55%) rotate(1.5deg);
+    }
+  }
+  
+  @keyframes propellerSpinFast {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes shadowPulseComplex {
+    0%,
+    100% {
+      width: 120px;
+      opacity: 0.5;
+      transform: translateX(-50%);
+    }
+    10% {
+      width: 115px;
+      opacity: 0.45;
+      transform: translateX(-52%);
+    }
+    30% {
+      width: 110px;
+      opacity: 0.4;
+      transform: translateX(-48%);
+    }
+    50% {
+      width: 100px;
+      opacity: 0.3;
+      transform: translateX(-50%);
+    }
+    70% {
+      width: 110px;
+      opacity: 0.4;
+      transform: translateX(-53%);
+    }
+    90% {
+      width: 115px;
+      opacity: 0.45;
+      transform: translateX(-47%);
+    }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 992px) {
+    .demo-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .selected-block,
+    .console {
+      margin: 1rem;
+      padding: 1.2rem;
+    }
+  
+    .console {
+      height: 250px;
+    }
+  
+    .parameter input,
+    .parameter select {
+      padding: 0.8rem 1rem;
+    }
+  
+    .execute-button {
+      padding: 0.9rem 1.2rem;
+    }
+  }
+  
