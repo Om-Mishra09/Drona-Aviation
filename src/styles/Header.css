@@ -7,8 +7,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 2.5rem;
-    /* background-color: rgba(var(--background-color-rgb, 255, 255, 255), 0.85); */
-    /* background-color: black; */
     backdrop-filter: blur(20px);
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);

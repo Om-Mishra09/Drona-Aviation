@@ -529,16 +529,16 @@
   .step-number {
     font-weight: 600;
     transition: transform 0.3s ease;
-    color: black; /* Adjust this based on your light theme color */
+    color: black; 
   }
   
-  /* Dark Mode Styling */
+
   body.dark-mode .step-number {
-    color: white; /* Change this to white in dark mode */
+    color: white; 
   }
-  /* Extra mobile responsiveness for screens under 480px */
+
 @media (max-width: 480px) {
-    /* Introduction section tweaks */
+
     .introduction {
       padding-top: 100px;
     }
